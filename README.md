@@ -9,9 +9,9 @@
 
 ### **Dokumentasi Hasil**
 - Tabel
-** screenshot
+![Image](img/table.jpg)<br><br>
 - Grafik 
-** screenshot
+![image](img/grafik.jpg)
 
 ### **Penjelasan Hasil Praktikum**
 Program ini adalah implementasi algoritma dari metode Bolzano yang dimana metode Bolzano merupakan metode **Setengah Interval (*Interval Halving*)**.<br><br>
