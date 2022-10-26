@@ -17,44 +17,21 @@ fx2_list = np.array([])
 x3_list = np.array([])
 fx3_list = np.array([])
 
-print ('Bentuk umum persamaan polinomial derajat 5:')
-print ('-> ax^5 + bx^4 + ... + f = 0\n')
-print ('Masukkan nilai a, b, ... , dan f secara berurutan : ')
-
-# input nilai variabel
-print ('a = ', end='')
-p = int(input ())
-print ('b = ', end='')
-q = int(input ())
-print ('c = ', end='')
-r = int(input ())
-print ('d = ', end='')
-s = int(input ())
-print ('e = ', end='')
-t = int(input ())
-print ('f = ', end='')
-u = int(input ())
-
-print ('\nMasukkan range nilai akar persamaan :')
-print ('x1 = ', end='')
-a = int(input ())
-print ('x2 = ', end='')
-b = int(input ())
-
 # Mendefinisikan fungsi persamaan
 def func(x):
-    return p*pow(x,5) + q*pow(x,4) + r*pow(x,3) + s*pow(x,2) + t*x + u
+        return pow(x,3) + pow(x,2) - 3*x - 3
+        # return pow(x,3)- 3*x + 1
+        # return math.cos(x) - 3x
+        # return pow(10,x)-100+2*x
+        # return np.log(x) - 1 - 1/pow(x,2)
+        # return math.exp(x) - np.log(x) - 20
+        # return pow(10,x)-1
 
 # Menggunakan Metode Bolzano untuk mencari akar persamaan 
 def BolzanoMethod(a,b):
 
     # Mendeklarasikan variabel global
     global x1_list, fx1_list, x2_list, fx2_list, x3_list, fx3_list
- 
-    # Akar persamaan tidak terdapat dalam range a sampai b
-    if (func(a) * func(b) >= 0):
-        print("Kamu memasukkan range yang kurang tepat\n")
-        return
   
     while ((b-a) >= 0.00001):
 
@@ -80,6 +57,23 @@ def BolzanoMethod(a,b):
              
     print("\nNilai akar persamaan : ","%.5f"%c)
 
+# Input nilai interval
+print ('Masukkan interval nilai akar persamaan :')
+print ('x1 = ', end='')
+a = int(input ())
+print ('x2 = ', end='')
+b = int(input ())
+
+# Mengecek apakah persamaan terdapat dalam interval a sampai b
+while (func(a) * func(b) >= 0):
+        print("Kamu memasukkan interval yang kurang tepat\n")
+        print ('Masukkan kembali interval nilai akar persamaan :')
+        print ('x1 = ', end='')
+        a = int(input ())
+        print ('x2 = ', end='')
+        b = int(input ())
+
+# Mencari akar persamaan menggunakan metode Bolzano
 BolzanoMethod(a, b)
 
 # Membuat figur baru untuk grafik persamaan
@@ -91,7 +85,8 @@ plt.ylim(-100, 100)
 
 # Membuat grafik persamaan
 graph_x = np.linspace(-100, 100, num = 10000)
-graph_y = func(graph_x)
+graph_y = np.vectorize(func)
+graph_y = graph_y (graph_x)
 
 plt.plot(graph_x,graph_y, label="f(x)")
 
@@ -114,7 +109,6 @@ for x,y in zip(x3_list,fx3_list):
                 xytext=(0,10),
                 ha = 'center'
                 )
-
 
 # Membuat tabel iterasi
 set_value = {'X1': x1_list, 'X2': x2_list, 'X3': x3_list, 'F(X1)': fx1_list, 'F(X2)': fx2_list,'F(X3)': fx3_list}
